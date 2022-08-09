@@ -1,11 +1,21 @@
-import { Card, Form, Input, Button, Checkbox } from "antd";
+import { Card, Form, Input, Button, Checkbox, message } from "antd";
 import logo from "@/assets/logo.png";
 import "./index.scss";
+import { useStore } from "@/store";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   // 点击登录按钮时触发 参数values即是表单输入数据
-  const onFinish = (values) => {
-    console.log(values);
+  const navigate = useNavigate();
+  const { loginStore } = useStore();
+  const onFinish = async (values) => {
+    const { mobile, code } = values;
+    try {
+      await loginStore.login({ mobile, code });
+      navigate("/");
+    } catch (e) {
+      message.error(e.response?.data?.message || "登录失败");
+    }
   };
 
   return (

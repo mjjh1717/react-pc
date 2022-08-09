@@ -1,4 +1,4 @@
-// import App from "../App.jsx";
+import App from "../App.jsx";
 import Layout from "@/pages/Layout";
 import Login from "@/pages/Login";
 import Notfound from "@/pages/Notfound";
@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const BaseRouter = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Login />}>
+      <Route path="/" element={<App />}>
         <Route path="/layout" element={<Layout />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<Notfound />}></Route>
